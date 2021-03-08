@@ -1,9 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { TaskList } from '../../components/TaskList';
 
 describe('App Page', () => {
   it('should be able to add a task', async () => {
+    localStorage.removeItem('tasks');
     render(<TaskList />);
 
     const taskInput = screen.getByPlaceholderText('Adicionar novo todo');
@@ -36,9 +36,10 @@ describe('App Page', () => {
 
     expect(addedSecondTaskTitle).toHaveTextContent('Beber água');
     expect(addedSecondTaskTitle.parentElement).not.toHaveClass('completed')
-  })
+  });
 
   it('should not be able to add a task with a empty title', () => {
+    localStorage.removeItem('tasks');
     render(<TaskList />);
 
     const addTaskButton = screen.getByTestId('add-task-button');
@@ -60,9 +61,10 @@ describe('App Page', () => {
     const addedFirstTaskTitle = screen.getByText('Desafio ReactJS Ignite');
 
     expect(addedFirstTaskTitle).toHaveTextContent('Desafio ReactJS Ignite');
-  })
+  });
 
   it('should be able to remove a task', async () => {
+    localStorage.removeItem('tasks');
     render(<TaskList />);
 
     const taskInput = screen.getByPlaceholderText('Adicionar novo todo');
@@ -94,9 +96,10 @@ describe('App Page', () => {
 
     expect(addedFirstTaskTitle).not.toBeInTheDocument();
     expect(addedSecondTaskTitle).toBeInTheDocument();
-  })
+  });
 
   it('should be able to check a task', () => {
+    localStorage.removeItem('tasks');
     render(<TaskList />);
 
     const taskInput = screen.getByPlaceholderText('Adicionar novo todo');
@@ -127,5 +130,5 @@ describe('App Page', () => {
 
     expect(addedSecondTask).toBeInTheDocument();
     expect(addedSecondTask).not.toHaveClass('completed');
-  })
-})
+  });
+});

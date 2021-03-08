@@ -26,13 +26,17 @@ export function TaskList() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
+  function newId() {
+    return tasks.reduce((total, task) => total += task.id + 1, 1);
+  }
+
   function handleCreateNewTask() {
     if (!newTaskTitle) return;
 
     setTasks(oldTasks => [
       ...oldTasks,
       {
-        id: oldTasks.length + 1,
+        id: newId(),
         title: newTaskTitle,
         isComplete: false,
       },
@@ -79,7 +83,7 @@ export function TaskList() {
         <ul>
           {tasks.map(task => (
             <li key={task.id}>
-              <div className={task.isComplete ? 'completed' : ''} data-testid="task" >
+              <div className={task.isComplete ? 'completed' : ''} data-testid="task">
                 <label className="checkbox-container">
                   <input
                     type="checkbox"
