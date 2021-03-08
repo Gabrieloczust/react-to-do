@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FiTrash, FiCheckSquare } from 'react-icons/fi';
 
 import '../styles/tasklist.scss';
@@ -13,6 +13,18 @@ export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const tasksStorage = localStorage.getItem('tasks');
+
+    if (tasksStorage) {
+      setTasks(JSON.parse(tasksStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleCreateNewTask() {
     if (!newTaskTitle) return;
