@@ -88,6 +88,8 @@ export function TaskList() {
             </li>
           ))}
 
+          {tasks.length === 0 && <span>Nenhuma task cadastrada!</span>}
+
         </ul>
       </main>
     </section>
