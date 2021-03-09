@@ -1,4 +1,4 @@
-Demo: [https://react-to-do-gabrieloczust.vercel.app/](https://react-to-do-gabrieloczust.vercel.app/)
+Demo: [react-to-do-gabrieloczust.vercel.app](https://react-to-do-gabrieloczust.vercel.app/)
 
 
 ## Available Scripts
