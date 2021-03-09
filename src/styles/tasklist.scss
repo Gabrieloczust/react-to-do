@@ -2,7 +2,7 @@ section.task-list {
   background: var(--shapes);
   border-radius: 1rem;
   
-  margin-top: -10rem;
+  margin: -10rem auto 0;
   padding: 70px 60px;
   
   filter: drop-shadow(0px 24px 64px rgba(0, 0, 0, 0.06));
@@ -157,5 +157,66 @@ section.task-list {
         }
       }
     } 
+  }
+}
+
+@media(max-width:700px) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  section.task-list {
+    padding: 2rem 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    max-height: calc(100% - 10rem);
+    display: flex;
+    flex-direction: column;
+
+    header {
+      flex-direction: column;
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .input-group {
+        input {
+          padding: 10px 20px;
+        }
+
+        button {
+          padding: 12px;
+          
+          &:focus {
+            box-shadow: 0 0 0pt 0.1rem #000;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    main {
+      margin-top: 1rem;
+      padding: 0 1rem;
+      overflow-y: auto;
+    }
+  } 
+
+  .alert {
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-size: .9rem;
+    margin-top: 1rem;
   }
 }

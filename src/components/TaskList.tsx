@@ -104,7 +104,7 @@ export function TaskList() {
             </li>
           ))}
 
-          {tasks.length === 0 && <span>Nenhuma task cadastrada!</span>}
+          {tasks.length === 0 && <span className="alert">Nenhuma task cadastrada!</span>}
 
         </ul>
       </main>
