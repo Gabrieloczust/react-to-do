@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -20,10 +21,15 @@ module.exports = {
     hot: true,
   },
   plugins: [
-    isDevelopment && new ReactRefreshWebpackPlugin(),  
+    isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html')
-    })
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "public/images", to: "images" },
+      ],
+    }),
   ].filter(Boolean),
   module: {
     rules: [
